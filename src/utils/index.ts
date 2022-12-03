@@ -29,3 +29,10 @@
  *     import { myUtil } from '../utils'
  *
  */
+export function arrayPartition<T>(array: T[], partitionSize: number): T[][] {
+  return array.length
+    ? [array.splice(0, partitionSize)].concat(
+        arrayPartition(array, partitionSize),
+      )
+    : [];
+}
