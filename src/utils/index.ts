@@ -36,3 +36,21 @@ export function arrayPartition<T>(array: T[], partitionSize: number): T[][] {
       )
     : [];
 }
+
+export function pluckIndexes<T>(array: T[], indexes: number[]): T[] {
+  return indexes.filter((i) => i < array.length).map((i) => array[i]);
+}
+
+export function invertMatrix<T>(matrix: T[][]): T[][] {
+  const newMatrix: T[][] = new Array(matrix[0].length)
+    .fill(undefined)
+    .map(() => new Array(matrix.length).fill(undefined));
+
+  for (let i = 0; i < matrix[0].length; i++) {
+    for (let j = 0; j < matrix.length; j++) {
+      newMatrix[i][j] = matrix[j][i];
+    }
+  }
+
+  return newMatrix;
+}
