@@ -54,3 +54,18 @@ export function invertMatrix<T>(matrix: T[][]): T[][] {
 
   return newMatrix;
 }
+
+export function mapSet<KeyType, ValueType>(
+  map: Map<KeyType, ValueType>,
+  key: KeyType,
+  setterFunction: (oldValue: ValueType | undefined) => ValueType,
+): Map<KeyType, ValueType> {
+  if (!map.has(key)) {
+    map.set(key, setterFunction(undefined));
+    return map;
+  }
+
+  const oldValue = map.get(key);
+  map.set(key, setterFunction(oldValue));
+  return map;
+}
